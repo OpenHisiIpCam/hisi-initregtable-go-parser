@@ -12,13 +12,11 @@
 
 ## About
 
-This app make this
+This app is an example how cool and useful we can use machine readable SystemRDL described registers information.
 
-![](images/after.png)
+This is example output (left bottom corner is data view before parsing):
+![hisi-initregtable-go-parser example screenshot](images/hisi-initregtable-go-parser-example.png)
 
-From
-
-![](images/before.png)
 
 ## Build
 
