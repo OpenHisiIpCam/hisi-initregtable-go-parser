@@ -26,22 +26,26 @@ As you can see, after parsing, for each item in registers initilization table we
 * Register`s **fields**, that are affected.
 * Each field **value meaning**.
 
-Format of initial registers table, questions why there is such table, how it works, how to extrac it from ROM image and so on are a bit out of scope this document. 
+Format of initial registers table, questions why there is such table, how it works, how to extract it from ROM image and so on are a bit out of scope this document. 
+Mostly it will be useful for people, who already faced with HiSilicon`s U-Boot, somehow knows what is going on and 
+looking for additional tools other than those provided by the vendor.
 More information you can find follow links in [Futher information](#futher_information) section.
 
 ## :hammer: Usage
 
 ### Build
 
+Prerequistives are go, python3
+
 **TODO**
 
 ### Run
 
-```shell
+```console
 foo@bar:~$ hisi-initregtable-go-parser -help
 ```
 
-```shell
+```console
 foo@bar:~$ hisi-initregtable-go-parser -file ./regbins/reg_info_hi3519v101.bin -offset 0 -size 4016
 ```
 
@@ -49,9 +53,34 @@ foo@bar:~$ hisi-initregtable-go-parser -file ./regbins/reg_info_hi3519v101.bin -
 
 **TODO**
 
+Overall pipilene is following: `systemrdl sources -> golang sources -> final binary`.
+
+SystemRDL data is parsed and coverted in go source code by rdl_to_go.py.
+There is regs.go source file, it describes structs for regsiter, field and field`s value and operations over these types. 
+Generated source is basicly instances of types defined in regs.go with data from rdl files.
+
+Generation itself is just text manipulations. Such technique is simplest, it doesn`t allow any ... TODO
+
+Obviosly the parser can be done in python3 as well as systemrdl-compiler, and step with golang can be eliminated,
+but as our task were not only the parser itself, but also code generation test. 
+Our main software is written mainly in golang and there are parts with massive conditional registers manipulation,
+so target was avoid magic like:
+
+```go
+utils.WriteDevMem32(0x20270110, 0x60FA0000)
+var tempCode uint32 = utils.ReadDevMem32(0x20270114)
+```
+But do something like this, as it makes less mental effort.
+```go
+regs.Addr(PERI_CRG79).Field("a7_sc_seled").Set("mhz24")
+var tempCode uint32 = regs.Addr(SOME_TEMPERATURE).Read()
+```
+
+
 ## :exclamation: Futher information <a name="futher_information"></a>
 
-This work were inspired by @kakigate`s [hisi-initregtable-parser](https://github.com/kakigate/hisi-initregtable-parser).
+This work were inspired by @kakigate`s [hisi-initregtable-parser](https://github.com/kakigate/hisi-initregtable-parser), 
+also repo contains useful detailed information about initregtable structure.
 
 At the moment parser only partially covers hi3516av200 family (hi3519v101 and hi3516av200 chips), 
 but this is only a matter of filling the [register database](https://github.com/OpenHisiIpCam/registers-description),
