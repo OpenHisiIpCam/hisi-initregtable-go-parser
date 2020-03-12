@@ -1,0 +1,3 @@
+[submodule "registers-description"]
+	path = registers-description
+	url = https://github.com/OpenHisiIpCam/registers-description
