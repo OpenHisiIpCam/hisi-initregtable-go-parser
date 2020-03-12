@@ -51,8 +51,11 @@ foo@bar:~$ hisi-initregtable-go-parser -file ./regbins/reg_info_hi3519v101.bin -
 
 ## :exclamation: Futher information <a name="futher_information"></a>
 
-This work were inspired by @kakigate`s [hisi-initregtable-parser](https://github.com/kakigate/hisi-initregtable-parser)
+This work were inspired by @kakigate`s [hisi-initregtable-parser](https://github.com/kakigate/hisi-initregtable-parser).
 
 At the moment parser only partially covers hi3516av200 family (hi3519v101 and hi3516av200 chips), 
 but this is only a matter of filling the [register database](https://github.com/OpenHisiIpCam/registers-description),
 if you are interested your contribution will be appriciated!
+
+If you interested in HiSilicon based ip cameras research/development/etc 
+you can visit our [project`s website](https://www.openhisiipcam.org) and browse our [github repos](https://github.com/OpenHisiIpCam/).
