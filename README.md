@@ -59,6 +59,64 @@ SystemRDL data is parsed and coverted in go source code by rdl_to_go.py.
 There is regs.go source file, it describes structs for regsiter, field and field`s value and operations over these types. 
 Generated source is basicly instances of types defined in regs.go with data from rdl files.
 
+Example:
+```
+...
+    reg {
+        name = "APLL configuration register 0";
+
+        field {
+            name = "Level-2 output frequency divider of the APLL";
+        } apll_postdiv2[30:28];
+
+        field {
+            name = "Level-1 output frequency divider of the APLL";
+        } apll_postdiv1[26:24];
+
+        field {
+            name = "Decimal part of the APLL frequency multiplication coefficient";
+        } apll_frac[23:0];
+
+    } PERI_CRG_PLL0 @ 0x0000;
+...
+```
+
+Goes into 
+```go
+const (
+    PERI_CRG_PLL0         = 0x12010000
+    //...
+)
+var registers = [...]register32{
+    register32{
+        addr: 0x12010000,
+        name: "PERI_CRG_PLL0",
+        desc: "APLL configuration register 0",
+        fields: []field{
+            field{
+                bitStart: 0,
+                bitEnd:   23,
+                name:     "apll_frac",
+                desc:     "Decimal part of the APLL frequency multiplication coefficient",
+            },
+            field{
+                bitStart: 24,
+                bitEnd:   26,
+                name:     "apll_postdiv1",
+                desc:     "Level-1 output frequency divider of the APLL",
+            },
+            field{
+                bitStart: 28,
+                bitEnd:   30,
+                name:     "apll_postdiv2",
+                desc:     "Level-2 output frequency divider of the APLL",
+            },
+        },
+    },
+    //...
+}
+```
+
 Generation itself is just text manipulations. Such technique is simplest, it doesn`t allow any ... TODO
 
 Obviosly the parser can be done in python3 as well as systemrdl-compiler, and step with golang can be eliminated,
