@@ -13,18 +13,21 @@
 ## :eyeglasses: About
 
 This small application has several goals: 
-* useful tool for low level HiSilicon ip camera SoCs initialization research (at least it is applicable for chips that use U-Boot 2010.06)
-* example how cool and easy we can use machine readable SystemRDL described registers information (more information [here](https://github.com/OpenHisiIpCam/registers-description))
+* Useful tool for low level HiSilicon ip camera SoCs initialization research (at least it is applicable for chips that use U-Boot 2010.06).
+* Example how cool and easy we can use machine readable SystemRDL described registers information (more information in [How does it work](#how_does_it_work) section).
 
 This is example output (left bottom corner is data view before parsing):
 
 ![hisi-initregtable-go-parser example screenshot](images/hisi-initregtable-go-parser-example.png)
 
-As you can see, for each item in table of registers initilization we have information about:
-* **operation** (WRITE, READ or DELAY)
-* **register**, that is used by operation
-* register`s **fields**, that are affected
-* each field **value meaning**
+As you can see, after parsing, for each item in registers initilization table we have following information:
+* **Operation** (WRITE, READ or DELAY).
+* **Register**, that is used by operation.
+* Register`s **fields**, that are affected.
+* Each field **value meaning**.
+
+Format of initial registers table, questions why there is such table, how it works, how to extrac it from ROM image and so on are a bit out of scope this document. 
+More information you can find follow links in [Futher information](#futher_information) section.
 
 ## :hammer: Usage
 
@@ -42,11 +45,11 @@ foo@bar:~$ hisi-initregtable-go-parser -help
 foo@bar:~$ hisi-initregtable-go-parser -file ./regbins/reg_info_hi3519v101.bin -offset 0 -size 4016
 ```
 
-## :bulb: How does it work
+## :bulb: How does it work <a name="how_does_it_work"></a>
 
 **TODO**
 
-## :exclamation: Futher information
+## :exclamation: Futher information <a name="futher_information"></a>
 
 This work were inspired by @kakigate`s [hisi-initregtable-parser](https://github.com/kakigate/hisi-initregtable-parser)
 
