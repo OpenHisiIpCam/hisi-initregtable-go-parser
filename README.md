@@ -32,12 +32,15 @@ More information you can find follow links in [Futher information](#futher_infor
 
 Prerequistives are go, python3
 
+Clone repo with submodules:
 ```console
-foo@bar:~$ git clone
+foo@bar:~$ git clone --recurse-submodules https://github.com/OpenHisiIpCam/hisi-initregtable-go-parser
 ```
+Install dependencies (systemrdl-compiler)
 ```console
-foo@bar:~$ sudo make deps
+foo@bar:~$ sudo make deps:
 ```
+Run build:
 ```console
 foo@bar:~$ make
 ```
