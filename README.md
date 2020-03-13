@@ -132,9 +132,9 @@ var registers = [...]register32{
 > Most probably exact this implementation is not the best one. 
 > For some cases it is possible improve memory usage for register database and make register/field/value lookup faster.
 
-Generation itself is just text manipulations. Such technique is simplest, it doesn`t allow any ... TODO
+Generation itself is just text manipulations. Such technique is simplest, ... **TODO**
 
-Obviosly the parser can be done in python3 as well as systemrdl-compiler, and step with golang can be eliminated,
+Obviously the parser can be done in python3 as well as systemrdl-compiler, and step with golang can be eliminated,
 but as our task were not only the parser itself, but also code generation test. 
 Our main software is written mainly in golang and there are parts with massive conditional registers manipulation,
 so target was avoid magic like:
@@ -152,7 +152,7 @@ var tempCode uint32 = regs.Addr(SOME_TEMPERATURE).Read()
 
 ## :exclamation: Futher information <a name="futher_information"></a>
 
-This work were inspired by @kakigate`s [hisi-initregtable-parser](https://github.com/kakigate/hisi-initregtable-parser), 
+This work was inspired by @kakigate`s [hisi-initregtable-parser](https://github.com/kakigate/hisi-initregtable-parser), 
 also repo contains useful detailed information about initregtable structure.
 
 At the moment parser only partially covers hi3516av200 family (hi3519v101 and hi3516av200 chips), 
