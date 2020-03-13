@@ -1,8 +1,3 @@
-<!--
-<p align="center">
- <img src="images/systemrdl300.png" alt="registers-description-systemdrl">
-</p>
--->
 <h3 align="center">hisi-initregtable-go-parser</h3>
 
 ---
@@ -37,16 +32,33 @@ More information you can find follow links in [Futher information](#futher_infor
 
 Prerequistives are go, python3
 
-**TODO**
+```console
+foo@bar:~$ git clone
+```
+```console
+foo@bar:~$ sudo make deps
+```
+```console
+foo@bar:~$ make
+```
 
 ### Run
 
 ```console
-foo@bar:~$ hisi-initregtable-go-parser -help
+foo@bar:~$ ./hisi-initregtable-go-parser --help
+Usage of ./hisi-initregtable-go-parser:
+  -chip string
+    	HiSilicon chip model name ( hi3516av200 hi3519v101 ) (default "hiXXX")
+  -file string
+    	file with reg data (default "u-boot.bin")
+  -offset int
+    	offset of reg data in file
+  -size int
+    	size of reg data in file (default 4016)
 ```
 
 ```console
-foo@bar:~$ hisi-initregtable-go-parser -file ./regbins/reg_info_hi3519v101.bin -offset 0 -size 4016
+foo@bar:~$ ./hisi-initregtable-go-parser -file ./regbins/reg_info_hi3519v101.bin -chip hi3519v101 -offset 0 -size 4016
 ```
 
 ## :bulb: How does it work <a name="how_does_it_work"></a>

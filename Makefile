@@ -1,5 +1,4 @@
-all:
-	@echo "TODO"
+all: clean build
 
 systemrdl:
 	make -C ./registers-description build
@@ -10,7 +9,7 @@ generate: systemrdl
 	./rdl_to_go.py ./registers-description/hi3516av200.rdl hi3519v101 > ./hi3519v101.go
 	go fmt ./hi3519v101.go
 
-build:
+build: generate
 	go build
 
 clean:

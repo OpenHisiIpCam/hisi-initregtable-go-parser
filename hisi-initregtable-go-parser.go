@@ -53,7 +53,13 @@ func main() {
 	var rbFile = flag.String("file", "u-boot.bin", "file with reg data")
 	var rbOffset = flag.Int("offset", 0, "offset of reg data in file")
 	var rbSize = flag.Int("size", 4016, "size of reg data in file")
-	var rbChip = flag.String("chip", "hiXXX", "HiSilicon chip family name")
+
+	var rbChipHelp string
+	for key, _ := range addrMaps {
+		rbChipHelp += key + " "
+	}
+
+	var rbChip = flag.String("chip", "hiXXX", "HiSilicon chip model name ( "+rbChipHelp+")")
 	flag.Parse()
 
 	color.Set(color.FgRed)
@@ -68,7 +74,6 @@ func main() {
 		for key, _ := range addrMaps {
 			fmt.Print(key, " ")
 		}
-		//fmt.Println(")")
 		fmt.Println("). All registers will be unknown!")
 	}
 
@@ -104,7 +109,6 @@ func main() {
 		attrs := bytesToUInt32(regBin[i+12 : i+16])
 
 		if reg == 0x0 {
-			//finish
 			fmt.Println("NULL reg found, aborting.")
 			break
 		}
