@@ -64,6 +64,8 @@ Usage of ./hisi-initregtable-go-parser:
 foo@bar:~$ ./hisi-initregtable-go-parser -file ./regbins/reg_info_hi3519v101.bin -chip hi3519v101 -offset 0 -size 4016
 ```
 
+You can evaluate [sample output](regbins/reg_info_hi3519v101.output).
+
 ## :bulb: How does it work <a name="how_does_it_work"></a>
 
 **TODO**
