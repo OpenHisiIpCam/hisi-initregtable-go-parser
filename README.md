@@ -59,7 +59,7 @@ SystemRDL data is parsed and coverted in go source code by rdl_to_go.py.
 There is regs.go source file, it describes structs for regsiter, field and field`s value and operations over these types. 
 Generated source is basicly instances of types defined in regs.go with data from rdl files.
 
-Example:
+Example systemrdl:
 ```
 ...
     reg {
@@ -80,13 +80,9 @@ Example:
     } PERI_CRG_PLL0 @ 0x0000;
 ...
 ```
-
-Goes into 
+Goes into following golang code:
 ```go
-const (
-    PERI_CRG_PLL0         = 0x12010000
-    //...
-)
+//...
 var registers = [...]register32{
     register32{
         addr: 0x12010000,
@@ -116,6 +112,8 @@ var registers = [...]register32{
     //...
 }
 ```
+> Most probably exact this implementation is not the best one. 
+> For some cases it is possible improve memory usage for register database and make register/field/value lookup faster.
 
 Generation itself is just text manipulations. Such technique is simplest, it doesn`t allow any ... TODO
 
@@ -144,5 +142,5 @@ At the moment parser only partially covers hi3516av200 family (hi3519v101 and hi
 but this is only a matter of filling the [register database](https://github.com/OpenHisiIpCam/registers-description),
 if you are interested your contribution will be appriciated!
 
-If you interested in HiSilicon based ip cameras research/development/etc 
+If you are interested in HiSilicon based ip cameras research/development/etc 
 you can visit our [project`s website](https://www.openhisiipcam.org) and browse our [github repos](https://github.com/OpenHisiIpCam/).

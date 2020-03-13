@@ -7,99 +7,82 @@ from systemrdl.node import FieldNode
 
 import argparse
 
-consts = []
-r32 = ""
-
-class MyGoListener(RDLListener):
-    #def __init__(self):
-        #global regs
-        #global r32
+################################################################################
+class RdlToGoCodeListener(RDLListener):
+    r32 = ""
+    name = ""
 
     def enter_Addrmap(self, node):
-        global r32
-        r32 = r32 + str("var registers = [...]register32 {\n") #print("var registers = [...]register32 {")
+        self.name = node.type_name
+        self.r32 += "var " + self.name + "Registers = [...]register32 {\n"
 
     def exit_Addrmap(self, node):
-        global r32
-        r32 = r32 + str("}\n") #print("}")
+        self.r32 += "}\n"
 
     def enter_Reg(self, node):
-        global r32
-        global consts
-        consts.append([node.type_name, node.absolute_address])
-        #regs.append(node.type_name)
-        #regs.append(123)
-
-        r32 = r32 + str("register32 {\n") #print("\tregister32 {")
-        r32 = r32 + str("addr: " + hex(node.absolute_address) + ",\n") #print("\t\taddr: " + hex(node.absolute_address) + ",")
-        #r32 = r32 + str("reset: 0,\n") #print("\t\treset: 0,")
-        r32 = r32 + str('name: "' + node.type_name + '",\n') #print('\t\tname: "' + node.type_name + '",')
-        r32 = r32 + str('desc: "' + node.get_property("name") + '",\n') #print('\t\tdesc: "' + node.get_property("name") + '",')
-        r32 = r32 + str("fields: []field {\n") #print("\t\tfields: []field {")
+        self.r32 += "register32 {\n"
+        self.r32 += "addr: " + hex(node.absolute_address) + ",\n"
+        self.r32 += 'name: "' + node.type_name + '",\n'
+        self.r32 += 'desc: "' + node.get_property("name") + '",\n'
+        self.r32 += "fields: []field {\n"
 
     def exit_Reg(self, node):
-        global r32
-        r32 = r32 + str("},\n") #print("\t\t},")
-        r32 = r32 + str("},\n") #print("\t},")
+        self.r32 += "},\n"
+        self.r32 += "},\n"
 
     def enter_Field(self, node):
-        global r32
-        r32 = r32 + str("field {\n") #print("\t\t\tfield {")
-        r32 = r32 + str("bitStart: " + str(node.low) + ",\n") #print("\t\t\t\tbitStart: " + str(node.low) + ","),
-        r32 = r32 + str("bitEnd: " + str(node.high) + ",\n") #print("\t\t\t\tbitEnd: " + str(node.high) + ","),
-        #r32 = r32 + str("size: 2,\n") #print("\t\t\t\tsize: 2,"),
-        r32 = r32 + str('name: "' + node.type_name  + '",\n') #print('\t\t\t\tname: "' + node.type_name  + '",')
-        r32 = r32 + str('desc: "' + node.get_property("name") + '",\n') #print('\t\t\t\tdesc: "' + node.get_property("desc") + '",')
+        self.r32 += "field {\n"
+        self.r32 += "bitStart: " + str(node.low) + ",\n"
+        self.r32 += "bitEnd: " + str(node.high) + ",\n" 
+        self.r32 += 'name: "' + node.type_name  + '",\n'
+        self.r32 += 'desc: "' + node.get_property("name") + '",\n'
         if (node.get_property("encode")):
-            r32 = r32 + str("values: []value {\n") #print("\t\t\t\tvalues: []value {")
+            self.r32 += "values: []value {\n"
             for item in node.get_property("encode"):
-                r32 = r32 + str("value {\n") #print("\t\t\t\t\tvalue {")
-                name_tmp = str(item).split(".")
-                name = name_tmp[1]
-                r32 = r32 + str('name: "' + name + '",\n') #print('\t\t\t\t\t\tname: "' + name + '",')
-                r32 = r32 + str("value: " + str(item.value) + ",\n") #print("\t\t\t\t\t\tvalue: " + str(item.value) + ",")
-                #r32 = r32 + str("desc: " + )
-                r32 = r32 + str("},\n") #print("\t\t\t\t\t},")
-            r32 = r32 + str("},\n") #print("\t\t\t\t},")
+                self.r32 += "value {\n"
+                name = str(item).split(".")
+                self.r32 += 'name: "' + name[1] + '",\n'
+                self.r32 += "value: " + str(item.value) + ",\n"
+                self.r32 += "},\n"
+            self.r32 += "},\n"
 
     def exit_Field(self, node):
-        global r32
-        r32 = r32 + str("},\n") #print("\t\t\t},")
+        self.r32 += "},\n"
 
-# Collect input files from the command line arguments
-input_files = sys.argv[1:]
+################################################################################
+parser = argparse.ArgumentParser(description='dfdfdfd.')
 
-# Create an instance of the compiler
+#parser.add_argument('infile', nargs='?', type=argparse.FileType('r') )
+parser.add_argument('rdl',     type=str,       help='SystemRDL source file')
+parser.add_argument('chip',    type=str,       help='Chip model name')
+
+#parser.add_argument('--', type=int,   help='Full (default) or Half duplex mode',               required=False)
+#parser.add_argument('--mc21', type=int,   help='To remove',               required=False)
+#parser.add_argument('--servercamera', type=int, help='Camera number',               required=False)
+
+
+args = parser.parse_args()
+
+#print(args)
+
 rdlc = RDLCompiler()
 
 try:
-    # Compile all the files provided
-    for input_file in input_files:
-        rdlc.compile_file(input_file)
+    rdlc.compile_file(args.rdl)
 
-    # Elaborate the design
-    root = rdlc.elaborate()
+    root = rdlc.elaborate(args.chip)
 except RDLCompileError:
-    # A compilation error occurred. Exit with error code
     sys.exit(1)
 
+#sys.exit(10)
 
-# Traverse the register model!
 walker = RDLWalker(unroll=True)
-#listener = MyModelPrintingListener()
-listener = MyGoListener()
-walker.walk(root, listener)
+golistener = RdlToGoCodeListener()
+walker.walk(root, golistener)
 
-
-#print("//+build mytag")
+print("//THIS FILE WAS AUTO GENERATED. PLEASE DO NOT EDIT")
 print("package main")
-print("")
 
-#print(consts)
-if len(consts)>0:
-    print("const (")
-    for rname, raddr in consts:
-        print("\t" + rname + "\t=\t" + hex(raddr))
-    print(")")
+print('func init() { addAddrMap("%s", %sRegisters[:]) }' % (golistener.name, golistener.name))
 
-print(r32)
+print(golistener.r32)
