@@ -1,0 +1,405 @@
+reg        value      delay      attrs
+0x20050000 0x00000002 0x00000000 0x00000015	WRITE	SC_CTRL[0:2] (System control register)
+							field modectrl[0:2] (modectrl) val = 0x2 (SLOW)
+0x20050000 0x00000002 0x00000000 0x181D0000	READ	SC_CTRL[0:3] (System control register)
+							field modectrl[0:2] (modectrl) val = 0x2 (SLOW)
+0x20030000 0x11000000 0x00000000 0x000000FD	WRITE	PERI_CRG0[0:31] (APLL configuration register 0)
+							field apll_frac[0:23] (Decimal part of the APLL frequency multiplication coefficient) val = 0x0
+							field apll_postdiv1[24:26] (Level-1 output frequency divider of the APLL) val = 0x1
+							field apll_postdiv2[27:29] (Level-2 output frequency divider of the APLL) val = 0x2
+							field apll_bypass[30:30] (APLL clock divider bypass (bypass) control.) val = 0x0 (NO_BYPASS)
+0x20030004 0x007C30A5 0x00000000 0x000000FD	WRITE	PERI_CRG1[0:31] (APLL configuration register 1)
+							field apll_fbdiv[0:11] (Integral part of the APLL frequency multiplication coefficient) val = 0xA5
+							field apll_refdiv[12:17] (Frequency divider of the APLL reference clock) val = 0x3
+							field apll_fout4phasepd[18:18] (APLL FOUT output power-down control) val = 0x1 (no)
+							field apll_postdivpd[19:19] (APLL FOUT output power-down control) val = 0x1 (no)
+							field apll_foutvcopd[20:20] (APLL VCO output power-down control) val = 0x1 (no)
+							field apll_pd[21:21] (APLL power-down control) val = 0x1 (down)
+							field apll_dsmpd[22:22] (APLL decimal division control) val = 0x1 (integral)
+							field apll_dacpd[23:23] (APLL test signal control) val = 0x0 (normal)
+0x20030008 0x22000000 0x00000000 0x000000FD	WRITE	PERI_CRG2[0:31] (VPLL0 Configuration Register 0)
+							field vpll0_frac[0:23] (Decimal part of the VPLL0 frequency multiplication coefficient) val = 0x0
+							field vpll0_postdiv1[24:26] (Level-1 output divider of VPLL0) val = 0x2
+							field vpll0_postdiv2[27:29] (Level-2 output divider of VPLL0) val = 0x4
+							field vpll0_bypass[30:30] (VPLL0 clock frequency division bypass) val = 0x0 (no)
+0x2003000C 0x007C2063 0x00000000 0x000000FD	WRITE	PERI_CRG3[0:31] (VPLL0 Configuration Register 1)
+							field vpll0_fbdiv[0:11] (Integral part of the VPLL0 frequency multiplication coefficient) val = 0x63
+							field vpll0_refdiv[12:17] (Frequency divider of the VPLL0 reference clock) val = 0x2
+							field vpll0_fout4phasepd[18:18] (VPLL0 FOUT output power-down control) val = 0x1 (no)
+							field vpll0_postdivpd[19:19] (VPLL0 POSTDIV output power-down control) val = 0x1 (no)
+							field vpll0_foutvcopd[20:20] (VPLL0 VCO output power-down control) val = 0x1 (no)
+							field vpll0_pd[21:21] (VPLL0 power-down control) val = 0x1 (down)
+							field vpll0_dsmpd[22:22] (VPLL0 decimal division control) val = 0x1 (integral)
+							field vpll0_dacpd[23:23] (VPLL0 test signal control) val = 0x0 (normal)
+0x20030028 0x00000000 0x00000000 0x0000100D	WRITE	PERI_CRG10[0:1] (A9 Frequency mode and reset configuration register)
+							fields not found
+0x200300E8 0x00000007 0x00000000 0x00150000	READ	PERI_CRG58[0:2] (CRG status register)
+							field apll_lock[0:0] (APLL lock status) val = 0x1 (locked)
+							field vpll0_lock[1:1] (VPLL0 lock status) val = 0x1 (locked)
+							field epll_lock[2:2] (EPLL lock status) val = 0x1 (locked)
+0x200300CC 0x0000000F 0x00000000 0x000000FD	WRITE	PERI_CRG51[0:31] (Clock and soft reset control registers related to ETH interface)
+							field hrst_eth_s[0:0] (Soft reset request for ETH.) val = 0x1 (RESET)
+							field eth_cken[1:1] (ETH clock gating configuration register.) val = 0x1 (ON)
+							field fephy_srst_req[2:2] (Soft reset request for FE PHY.) val = 0x1 (RESET)
+							field mii_rmii_mode[3:3] (ETH MII, RMII mode configuration.) val = 0x1 (RMII)
+							field eth_rmiick_sel[4:4] (ETH RMII CLK clock source selection.) val = 0x0 (PAD)
+0x20030000 0x00000000 0x00002710 0x00000000	DELAY   10000
+0x200300CC 0x0000000A 0x00000000 0x000000FD	WRITE	PERI_CRG51[0:31] (Clock and soft reset control registers related to ETH interface)
+							field hrst_eth_s[0:0] (Soft reset request for ETH.) val = 0x0 (CANCEL)
+							field eth_cken[1:1] (ETH clock gating configuration register.) val = 0x1 (ON)
+							field fephy_srst_req[2:2] (Soft reset request for FE PHY.) val = 0x0 (CANCEL)
+							field mii_rmii_mode[3:3] (ETH MII, RMII mode configuration.) val = 0x1 (RMII)
+							field eth_rmiick_sel[4:4] (ETH RMII CLK clock source selection.) val = 0x0 (PAD)
+0x20050014 0x0FFF8000 0x00000000 0x000000FD	WRITE	SC_PLLCTRL[0:31] (PLL control register)
+							field pllover[0:0] (pllover) val = 0x0 (ENABLE)
+							field plltime[3:27] (plltime) val = 0x1FFF000
+0x20050000 0x00000004 0x00000000 0x00000015	WRITE	SC_CTRL[0:2] (System control register)
+							field modectrl[0:2] (modectrl) val = 0x4 (NORMAL)
+0x20050000 0x00000004 0x00000000 0x181D0000	READ	SC_CTRL[0:3] (System control register)
+							field modectrl[0:2] (modectrl) val = 0x4 (NORMAL)
+0x200500A0 0x00000000 0x00000000 0x00000005	WRITE	unknown[0:0]
+							fields not found
+0x20110000 0x00000000 0x00002710 0x00000000	DELAY   10000
+0x20110A04 0x0000001F 0x00000000 0x000000FD	WRITE	unknown[0:31]
+							fields not found
+0x20110AC0 0x00000055 0x00000000 0x000000FD	WRITE	unknown[0:31]
+							fields not found
+0x20110804 0x0000004B 0x00000000 0x000000FD	WRITE	DDRC_PHY_REG3[0:31] (DDRPHY register 3)
+							field phy_bl[0:0] (phy_bl) val = 0x1 (BURST_8)
+0x20110830 0x00000091 0x00000000 0x000000FD	WRITE	unknown[0:31]
+							fields not found
+0x20110818 0x00000040 0x00000000 0x000000FD	WRITE	unknown[0:31]
+							fields not found
+0x20110840 0x000000CC 0x00000000 0x000000FD	WRITE	DDRC_PHY_REG12[0:31] (DDRPHY Register 12)
+							field phy_cmd0pu_str[0:0] (phy_cmd0pu_str) val = 0x0
+0x20110848 0x00000000 0x00000000 0x0000000D	WRITE	DDRC_PHY_REG14[0:1] (DDRPHY Register 14)
+							field phy_cmd0pd_msb[0:0] (phy_cmd0pd_msb) val = 0x0
+							field phy_cmd0pu_msb[1:1] (phy_cmd0pd_str) val = 0x0
+0x20110844 0x000000FF 0x00000000 0x000000FD	WRITE	DDRC_PHY_REG13[0:31] (DDRPHY Register 13)
+							field phy_cmd0_fsl[0:3] (phy_cmd0_fsl) val = 0xF
+							field phy_cmd0_rsl[4:7] (phy_cmd0_rsl) val = 0xF
+0x20110854 0x000000CC 0x00000000 0x000000FD	WRITE	DDRC_PHY_REG16[0:31] (DDRPHY Register 16)
+							field phy_cmd1pd_str[0:3] (phy_cmd0_fsl) val = 0xC
+							field phy_cmd1pu_str[4:7] (phy_cmd1pu_str) val = 0xC
+0x2011085C 0x00000000 0x00000000 0x0000000D	WRITE	DDRC_PHY_REG18[0:1] (DDRPHY Register 18)
+							field phy_cmd1pd_msb[0:0] (phy_cmd1pd_msb) val = 0x0
+							field phy_cmd1pu_msb[1:1] (phy_cmd1pu_msb) val = 0x0
+0x20110858 0x000000FF 0x00000000 0x000000FD	WRITE	DDRC_PHY_REG17[0:31] (DDRPHY Register 17)
+							field phy_cmd1_fsl[0:3] (phy_cmd1_fsl) val = 0xF
+							field phy_cmd1pu_str[4:7] (phy_cmd1_rsl) val = 0xF
+0x20110870 0x000000CC 0x00000000 0x000000FD	WRITE	DDRC_PHY_REG22[0:31] (DDRPHY Register 22)
+							field phy_ckpd_str[0:3] (phy_ckpd_str) val = 0xC
+							field phy_ckpu_str[4:7] (phy_ckpu_str) val = 0xC
+0x20110878 0x00000000 0x00000000 0x0000000D	WRITE	DDRC_PHY_REG24[0:1] (DDRPHY Register 24)
+							field phy_ckpd_msb[0:0] (phy_ckpd_msb) val = 0x0
+							field phy_ckpu_msb[1:1] (phy_ckpu_msb) val = 0x0
+0x20110874 0x000000FF 0x00000000 0x000000FD	WRITE	DDRC_PHY_REG23[0:31] (DDRPHY Register 23)
+							field phy_ck_fsl[0:3] (phy_ck_fsl) val = 0xF
+							field phy_ck_rsl[4:7] (phy_ck_rsl) val = 0xF
+0x20110880 0x000000CC 0x00000000 0x000000FD	WRITE	DDRC_PHY_REG25[0:31] (DDRPHY Register 25)
+							field phy_dqpd_str[0:3] (phy_dqpd_str) val = 0xC
+							field phy_dqpu_str[4:7] (phy_dqpu_str) val = 0xC
+0x2011088C 0x00000000 0x00000000 0x0000200D	WRITE	DDRC_PHY_REG28[0:1] (DDRPHY Register 28)
+							field phy_dqpd_odtmsb[0:0] (phy_dqpd_odtmsb) val = 0x0
+							field phy_dqpu_odtmsb[1:1] (phy_dqpu_odtmsb) val = 0x0
+0x20110884 0x00000088 0x00000000 0x000000FD	WRITE	DDRC_PHY_REG26[0:31] (DDRPHY Register 26)
+							field phy_dq_fsl[0:3] (phy_dq_fsl) val = 0x8
+							field phy_dq_rsl[4:7] (phy_dq_rsl) val = 0x8
+0x20110888 0x0000001B 0x00000000 0x000000FD	WRITE	DDRC_PHY_REG27[0:31] (DDRPHY Register 27)
+							field phy_dqpd_odt[0:2] (phy_dqpd_odt) val = 0x3
+							field phy_dqpu_odt[3:5] (phy_dqpu_odt) val = 0x3
+0x2011088C 0x00000003 0x00000000 0x0000000D	WRITE	DDRC_PHY_REG28[0:1] (DDRPHY Register 28)
+							field phy_dqpd_odtmsb[0:0] (phy_dqpd_odtmsb) val = 0x1
+							field phy_dqpu_odtmsb[1:1] (phy_dqpu_odtmsb) val = 0x1
+0x20110AC4 0x00000000 0x00000000 0x000000FD	WRITE	DDRC_PHY_REG30[0:31] (DDRPHY Register 30)
+							field phy_skew_a0[0:2] (phy_skew_a0) val = 0x0
+							field phy_skew_a1[3:5] (phy_skew_a1) val = 0x0
+0x20110AC8 0x00000000 0x00000000 0x000000FD	WRITE	DDRC_PHY_REG31[0:31] (DDRPHY Register 31)
+							field phy_skew_a2[0:2] (phy_skew_a2) val = 0x0
+							field phy_skew_a3[3:5] (phy_skew_a3) val = 0x0
+0x20110ACC 0x00000000 0x00000000 0x000000FD	WRITE	DDRC_PHY_REG32[0:31] (DDRPHY Register 32)
+							field phy_skew_a4[0:2] (phy_skew_a4) val = 0x0
+							field phy_skew_a5[3:5] (phy_skew_a5) val = 0x0
+0x20110AD0 0x00000000 0x00000000 0x000000FD	WRITE	DDRC_PHY_REG33[0:31] (DDRPHY Register 33)
+							field phy_skew_a6[0:2] (phy_skew_a6) val = 0x0
+							field phy_skew_a7[3:5] (phy_skew_a7) val = 0x0
+0x20110AD4 0x00000000 0x00000000 0x000000FD	WRITE	DDRC_PHY_REG34[0:31] (DDRPHY Register 34)
+							field phy_skew_a8[0:2] (phy_skew_a8) val = 0x0
+							field phy_skew_a9[3:5] (phy_skew_a9) val = 0x0
+0x20110AD8 0x00000000 0x00000000 0x000000FD	WRITE	DDRC_PHY_REG35[0:31] (DDRPHY Register 35)
+							field phy_skew_a10[0:2] (phy_skew_a10) val = 0x0
+							field phy_skew_a11[3:5] (phy_skew_a11) val = 0x0
+0x20110ADC 0x00000000 0x00000000 0x000000FD	WRITE	DDRC_PHY_REG36[0:31] (DDRPHY Register 36)
+							field phy_skew_a12[0:2] (phy_skew_a12) val = 0x0
+							field phy_skew_a13[3:5] (phy_skew_a13) val = 0x0
+0x20110AE0 0x00000000 0x00000000 0x000000FD	WRITE	DDRC_PHY_REG37[0:31] (DDRPHY Register 37)
+							field phy_skew_b0[0:2] (phy_skew_b0) val = 0x0
+							field phy_skew_b1[3:5] (phy_skew_b1) val = 0x0
+0x20110AE4 0x00000000 0x00000000 0x000000FD	WRITE	DDRC_PHY_REG38[0:31] (DDRPHY Register 38)
+							field phy_skew_b2[0:2] (phy_skew_b2) val = 0x0
+							field phy_skew_rasb[3:5] (phy_skew_rasb) val = 0x0
+0x20110AE8 0x00000000 0x00000000 0x000000FD	WRITE	DDRC_PHY_REG39[0:31] (DDRPHY Register 39)
+							field phy_skew_casb[0:2] (phy_skew_casb) val = 0x0
+							field phy_skew_web[3:5] (phy_skew_web) val = 0x0
+0x20110AF0 0x00000000 0x00000000 0x000000FD	WRITE	DDRC_PHY_REG41[0:31] (DDRPHY Register 41)
+							field phy_skew_odt[0:2] (phy_skew_odt) val = 0x0
+							field phy_skew_cke[3:5] (phy_skew_cke) val = 0x0
+0x20110AF4 0x00000000 0x00000000 0x000000FD	WRITE	DDRC_PHY_REG42[0:31] (DDRPHY Register 42)
+							field phy_skew_rstn[0:2] (phy_skew_rstn) val = 0x0
+0x20110AF8 0x00000000 0x00000000 0x000000FD	WRITE	DDRC_PHY_REG43[0:31] (DDRPHY Register 43)
+							field phy_txskew_dm0[0:2] (phy_txskew_dm0) val = 0x0
+							field phy_txskew_dm1[3:5] (phy_txskew_dm1) val = 0x0
+0x20110B20 0x00000000 0x00000000 0x000000FD	WRITE	DDRC_PHY_REG53[0:31] (DDRPHY Register 53)
+							field phy_skew_a14[3:5] (phy_skew_a14) val = 0x0
+0x20110AEC 0x00000009 0x00000000 0x000000FD	WRITE	DDRC_PHY_REG40[0:31] (DDRPHY Register 40)
+							field phy_skew_ck1[0:2] (phy_skew_ck1) val = 0x1
+							field phy_skew_ckb1[3:5] (phy_skew_ckb1) val = 0x1
+0x20110B24 0x00000009 0x00000000 0x000000FD	WRITE	DDRC_PHY_REG54[0:31] (DDRPHY Register 54)
+							field phy_skew_ck0[0:2] (phy_skew_ck0) val = 0x1
+							field phy_skew_ckb0[3:5] (phy_skew_ckb0) val = 0x1
+0x20110B28 0x00000000 0x00000000 0x000000FD	WRITE	DDRC_PHY_REG55[0:31] (DDRPHY Register 55)
+							field phy_rxskew_dm0[0:2] (phy_rxskew_dm0) val = 0x0
+							field phy_rxskew_dm1[3:5] (phy_rxskew_dm1) val = 0x0
+0x20110AFC 0x00000000 0x00000000 0x000000FD	WRITE	unknown[0:31]
+							fields not found
+0x20110B00 0x00000000 0x00000000 0x000000FD	WRITE	unknown[0:31]
+							fields not found
+0x20110B04 0x00000000 0x00000000 0x000000FD	WRITE	unknown[0:31]
+							fields not found
+0x20110B08 0x00000000 0x00000000 0x000000FD	WRITE	unknown[0:31]
+							fields not found
+0x20110B0C 0x00000000 0x00000000 0x000000FD	WRITE	unknown[0:31]
+							fields not found
+0x20110B10 0x00000000 0x00000000 0x000000FD	WRITE	unknown[0:31]
+							fields not found
+0x20110B14 0x00000000 0x00000000 0x000000FD	WRITE	unknown[0:31]
+							fields not found
+0x20110B18 0x00000000 0x00000000 0x000000FD	WRITE	unknown[0:31]
+							fields not found
+0x20110B1C 0x00000008 0x00000000 0x000000FD	WRITE	DDRC_PHY_REG52[0:31] (DDRPHY Register 52)
+							field phy_txskew_dqs0[0:2] (phy_txskew_dqs0) val = 0x0
+							field phy_txskew_dqs1[3:5] (phy_txskew_dqs1) val = 0x1
+0x20110B2C 0x00000000 0x00000000 0x000000FD	WRITE	unknown[0:31]
+							fields not found
+0x20110B30 0x00000000 0x00000000 0x000000FD	WRITE	unknown[0:31]
+							fields not found
+0x20110B34 0x00000000 0x00000000 0x000000FD	WRITE	unknown[0:31]
+							fields not found
+0x20110B38 0x00000000 0x00000000 0x000000FD	WRITE	unknown[0:31]
+							fields not found
+0x20110B3C 0x00000000 0x00000000 0x000000FD	WRITE	unknown[0:31]
+							fields not found
+0x20110B40 0x00000000 0x00000000 0x000000FD	WRITE	unknown[0:31]
+							fields not found
+0x20110B44 0x00000000 0x00000000 0x000000FD	WRITE	unknown[0:31]
+							fields not found
+0x20110B48 0x00000000 0x00000000 0x000000FD	WRITE	unknown[0:31]
+							fields not found
+0x20110B4C 0x00000000 0x00000000 0x000000FD	WRITE	DDRC_PHY_REG5E[0:31] (DDRPHY register 5E)
+							field phy_rxskew_dqs0[0:2] (phy_rxskew_dqs0) val = 0x0
+							field phy_rxskew_dqs1[3:5] (phy_rxskew_dqs1) val = 0x0
+0x201108E0 0x00000023 0x00000000 0x000000FD	WRITE	DDRC_PHY_REG8[0:31] (DDRPHY Register 8)
+							field phy_lrxdqsdll_dly[0:1] (phy_lrxdqsdll_dly) val = 0x3 (DELAY_67_5)
+							field phy_lrxdqsdll_en[2:2] (phy_lrxdqsdll_en) val = 0x0 (ENABLE)
+							field phy_ldqssqdll_dly[3:5] (phy_ldqssqdll_dly) val = 0x4
+							field phy_ldqssqdll_en[6:6] (phy_ldqssqdll_en) val = 0x0 (ENABLE)
+0x20110920 0x00000022 0x00000000 0x000000FD	WRITE	DDRC_PHY_REG11[0:31] (DDRPHY Register 11)
+							field phy_rrxdqsdll_dly[0:1] (phy_rrxdqsdll_dly) val = 0x2 (DELAY_67_5)
+							field phy_rrxdqsdll_en[2:2] (phy_rrxdqsdll_en) val = 0x0 (ENABLE)
+							field phy_rdqssqdll_dly[3:5] (phy_rdqssqdll_dly) val = 0x4
+							field phy_rdqssqdll_en[6:6] (phy_rdqssqdll_en) val = 0x0 (ENABLE)
+0x201108D4 0x0000000C 0x00000000 0x000000FD	WRITE	DDRC_PHY_REG6[0:31] (DDRPHY Register 6)
+							field phy_ltxdqdll_dly[0:2] (phy_ltxdqdll_dly) val = 0x4
+							field phy_ltxdqdll_en[3:3] (phy_ltxdqdll_en) val = 0x1 (DISABLE)
+							field phy_ltxdqdll_byph[4:4] (phy_ltxdqdll_byph) val = 0x0 (NO_DELAY)
+0x20110914 0x0000000D 0x00000000 0x000000FD	WRITE	DDRC_PHY_REG9[0:31] (DDRPHY Register 9)
+							field phy_rtxdqdll_dly[0:2] (phy_rtxdqdll_dly) val = 0x5
+							field phy_rtxdqdll_en[3:3] (phy_rtxdqdll_en) val = 0x1 (DISABLE)
+							field phy_rtxdqdll_byph[4:4] (phy_rtxdqdll_byph) val = 0x0 (NO_DELAY)
+0x20110000 0x00000000 0x00002710 0x00000000	DELAY   10000
+0x20110408 0x00000000 0x000003E8 0x000000FD	WRITE	DDRC_PHYCTRL[0:31] (DDRPHY Control Register)
+							field phy_init_start[0:0] (phy_init_start) val = 0x0 (VALID)
+0x20110404 0x00000001 0x00000000 0x00050000	READ	DDRC_PHYSTATUS[0:0] (DDRPHY status register)
+							field phy_init_done[0:0] (phy_init_done) val = 0x1 (COMPLETE)
+0x20110014 0x00061B60 0x00000000 0x000000FD	WRITE	DDRC_EMRS01[0:31] (Mode configuration register for DDR)
+							field mrs[0:15] (mrs) val = 0x1B60
+							field emrs1[16:31] (emrs1) val = 0x6
+0x20110018 0x00000010 0x00000000 0x000000FD	WRITE	DDRC_EMRS23[0:31] (Extended Mode Configuration Register for DDR)
+							field emrs2[0:15] (emrs2) val = 0x10
+							field emrs3[16:31] (emrs3) val = 0x0
+0x2011001C 0x8000C600 0x00000000 0x000000FD	WRITE	DDRC_CONFIG0[0:31] (Configure register 0 of DDRC function)
+							field brushes[0:0] (brushes) val = 0x0 (BL4)
+							field brst_a12[1:1] (brst_a12) val = 0x0 (ENABLE)
+							field mem_width[4:5] (mem_width) val = 0x0 (BIT_16)
+							field dram_type[8:10] (dram_type) val = 0x6 (DDR3)
+							field rank[12:13] (rank) val = 0x0 (RANK_1)
+							field ddrc_2t_en[14:14] (ddrc_2t_en) val = 0x1 (DISABLE)
+							field ddrc_2t_sel[15:15] (ddrc_2t_sel) val = 0x1 (ALWAYS_LOW)
+							field pd_en[16:16] (pd_en) val = 0x0 (ENABLE)
+							field pd_cc[17:17] (pd_cc) val = 0x0 (CLK_ENABLE)
+							field sr_cc[18:18] (sr_cc) val = 0x0 (CLK_ENABLE)
+							field rcv_pdr[19:19] (rcv_pdr) val = 0x0 (FORBIDDEN)
+							field pd_prd[20:27] (pd_prd) val = 0x0
+							field init_arefnum[28:31] (init_arefnum) val = 0x8
+0x20110020 0x00000785 0x00000000 0x000000FD	WRITE	DDRC_CONFIG1[0:31] (Register 1 for configuring the DDRC function)
+							field ecc_en[1:1] (ecc_en) val = 0x0 (ENABLE)
+							field clkratio[2:2] (clkratio) val = 0x1 (ONE_TO_TWO)
+							field read_mode[3:3] (read_mode) val = 0x0 (ALONG_ROAD)
+							field wrlvl_en[5:5] (wrlvl_en) val = 0x0 (ENABLE)
+							field aref_mode[6:6] (aref_mode) val = 0x0 (EVERY_CYCLE)
+							field lock_en[7:7] (lock_en) val = 0x1 (DISABLE)
+							field exclu_en[8:8] (exclu_en) val = 0x1 (DISABLE)
+							field wr_rcv_mode[9:9] (wr_rcv_mode) val = 0x1 (WAIT)
+							field auto_pre_en[10:10] (auto_pre_en) val = 0x1 (DISABLE)
+							field pd_pre_cls[12:13] (pd_pre_cls) val = 0x0 (CYCLE_0)
+							field pd_pst_opn[14:15] (pd_pst_opn) val = 0x0 (CYCLE_0)
+							field pd_ac[16:16] (pd_ac) val = 0x0 (NO_DISABLE)
+							field odis_ddrio[17:17] (odis_ddrio) val = 0x0 (NO_DISABLE)
+							field clk_switch[20:20] (clk_switch) val = 0x0 (NO_BACK_PRESSURE)
+							field sref_zqc_en[22:22] (sref_zqc_en) val = 0x0 (ENABLE)
+							field sref_arefnum[28:31] (sref_arefnum) val = 0x0
+0x20110058 0x00000000 0x00000000 0x00000055	WRITE	DDRC_TIMING2[0:10] (DDR Timing Parameter Register 2)
+							field taref[0:10] (taref) val = 0x0
+0x20110010 0x00000001 0x00000000 0x000000FD	WRITE	DDRC_CTRL[0:31] (DDRC Control Register)
+							field ddr_rst_n[0:0] (ddr_rst_n) val = 0x1 (INVALID)
+0x20110000 0x00000000 0x00030D40 0x00000000	DELAY   200000
+0x2011002C 0x00000132 0x00000000 0x000000FD	WRITE	DDRC_RNKCFG[0:31] (Registers to configure DDR features)
+							field mem_col[0:2] (mem_col) val = 0x2 (BIT_10)
+							field mem_row[4:6] (mem_row) val = 0x3 (BIT_14)
+							field mem_bank[8:8] (mem_bank) val = 0x1 (BANK_8)
+							field mem_map[12:13] (mem_map) val = 0x0 (COMPLETED)
+0x20110050 0x6355110C 0x00000000 0x000000FD	WRITE	DDRC_TIMING0[0:31] (DDR Timing Parameter Register 0)
+							field tras[0:4] (tras) val = 0xC (CYCLE_12)
+							field trc[8:13] (trc) val = 0x11 (unknown)
+							field trcd[16:19] (trcd) val = 0x5 (CYCLE_5)
+							field trp[20:23] (trp) val = 0x5 (CYCLE_5)
+							field trrd[24:27] (trrd) val = 0x3 (CYCLE_3)
+							field tmrd[28:31] (tmrd) val = 0x6 (CYCLE_6)
+0x20110054 0xFF637A35 0x00000000 0x000000FD	WRITE	DDRC_TIMING1[0:31] (DDR Timing Parameter Register 1)
+							field trfc[0:7] (trfc) val = 0x35
+							field tcl[8:11] (tcl) val = 0xA (CYCLE_10)
+							field twl[12:15] (twl) val = 0x7 (CYCLE_7)
+							field trtw[16:19] (trtw) val = 0x3
+							field trdlat[20:23] (trdlat) val = 0x6
+							field tsre[24:31] (tsre) val = 0xFF
+0x20110058 0x4350F000 0x00000000 0x000000FD	WRITE	DDRC_TIMING2[0:31] (DDR Timing Parameter Register 2)
+							field taref[0:10] (taref) val = 0x0
+							field tfaw[12:17] (tfaw) val = 0xF
+							field tower[20:23] (tower) val = 0x5 (CYCLE_5)
+							field twtr[24:27] (twtr) val = 0x3 (CYCLE_3)
+							field tcke[28:31] (tcke) val = 0x4 (CYCLE_4)
+0x2011005C 0xFFDFF6F3 0x00000000 0x000000FD	WRITE	DDRC_TIMING3[0:31] (DDR Timing Parameter Register 3)
+							field trtp[0:3] (trtp) val = 0x3 (CYCLE_3)
+							field xard[4:7] (xard) val = 0xF
+							field taond[8:11] (taond) val = 0x6 (unknown)
+							field tzqinit[12:21] (tzqinit) val = 0x1FF
+							field tzq_prd[22:31] (tzq_prd) val = 0x3FF
+0x20110040 0x80000000 0x00000000 0x000000FD	WRITE	DDRC_BASEADDR[0:31] (DDR space base address configuration register)
+							field mem_base_addr[0:31] (mem_base_addr) val = 0x80000000
+0x201100F4 0x00000001 0x00000000 0x000000FD	WRITE	DDRC_ODTCFG[0:31] (DDR ODT Feature Configuration Register)
+							field wodt0[0:0] (wodt0) val = 0x1 (DISABLE_WRITING)
+							field rodt0[16:16] (rodt0) val = 0x0 (DISABLE_READING)
+0x201100AC 0x03000301 0x00000000 0x000000FD	WRITE	DDRC_DTRCTRL[0:31] (DDRC Gating Training Control Register)
+							field train_en[1:1] (train_en) val = 0x0 (ENABLE)
+							field track_en[2:2] (track_en) val = 0x0 (FORBIDDEN)
+							field train_mode[8:8] (train_mode) val = 0x1 (NORMAL_TRAINING)
+							field rinse[9:11] (rinse) val = 0x1
+							field dt_byte[24:31] (dt_byte) val = 0x3
+0x20110004 0x00000000 0x000003E8 0x000000FD	WRITE	DDRC_SREFCTRL[0:31] (DDRC self-refresh control register)
+							field sr_req[0:0] (sr_req) val = 0x0 (EXIT)
+0x20110000 0x00000000 0x00000000 0x10050000	READ	DDRC_STATUS[0:0] (DDRC_STATUS)
+							field busy[0:0] (busy) val = 0x0 (IDLE)
+0x20110008 0x00000001 0x000003E8 0x00000005	WRITE	DDRC_INITCTRL[0:0] (DDRC initialization control register)
+							field init_req[0:0] (init_req) val = 0x1 (START)
+0x20110000 0x00000000 0x00000000 0x18050000	READ	DDRC_STATUS[0:0] (DDRC_STATUS)
+							field busy[0:0] (busy) val = 0x0 (IDLE)
+0x20110838 0x000000A0 0x00000000 0x000000FD	WRITE	DDRC_PHY_REG4A[0:31] (DDRPHY Register 4A)
+							field phy_al[0:3] (phy_al) val = 0x0
+							field phy_cl[4:7] (phy_cl) val = 0xA
+0x20110808 0x00000001 0x000003E8 0x000000FD	WRITE	DDRC_PHY_REG2[0:31] (DDRPHY register 2)
+							field cal_start[0:0] (cal_start) val = 0x1 (DISABLE)
+							field cal_mode[1:1] (cal_mode) val = 0x0 (NON_BYPASS)
+							field phy_mem_type[6:6] (phy_mem_type) val = 0x0 (DDR3)
+0x20110BE8 0x00000003 0x00000000 0x000D0000	READ	DDRC_PHY_REG61[0:1] (DDRPHY Register 61)
+							field phy_cal_done_l[0:0] (phy_cal_done_l) val = 0x1
+							field phy_cal_done_h[1:1] (phy_cal_done_h) val = 0x1
+0x20110808 0x00000000 0x00000000 0x000000FD	WRITE	DDRC_PHY_REG2[0:31] (DDRPHY register 2)
+							field cal_start[0:0] (cal_start) val = 0x0 (ENABLE)
+							field cal_mode[1:1] (cal_mode) val = 0x0 (NON_BYPASS)
+							field phy_mem_type[6:6] (phy_mem_type) val = 0x0 (DDR3)
+0x20110058 0x000000A1 0x00000000 0x00000055	WRITE	DDRC_TIMING2[0:10] (DDR Timing Parameter Register 2)
+							field taref[0:10] (taref) val = 0xA1
+0x200F004C 0x00000000 0x00000000 0x00000005	WRITE	muxctrl_reg19[0:0] (UART1_RTSN pin mux control register.)
+							field muxctrl_reg19[0:0] (muxctrl_reg19) val = 0x0 (GPIO5_0)
+0x200F0050 0x00000000 0x00000000 0x00000005	WRITE	muxctrl_reg20[0:0] (UART1_RXD pin mux control register.)
+							field muxctrl_reg20[0:0] (muxctrl_reg20) val = 0x0 (GPIO5_1)
+0x200F0054 0x00000002 0x00000000 0x0000000D	WRITE	muxctrl_reg21[0:1] (Mux control register for UART1_CTSN pin.)
+							field muxctrl_reg21[0:1] (muxctrl_reg21) val = 0x2 (PWM_SVB)
+0x200F0058 0x00000000 0x00000000 0x00000005	WRITE	muxctrl_reg22[0:0] (UART1_TXD pin mux control register.)
+							field muxctrl_reg22[0:0] (muxctrl_reg22) val = 0x0 (GPIO5_3)
+0x200F005C 0x00000000 0x00000000 0x00000005	WRITE	muxctrl_reg23[0:0] (UART2_RXD pin mux control register.)
+							field muxctrl_reg23[0:0] (muxctrl_reg23) val = 0x0 (GPIO5_4)
+0x200F0060 0x00000000 0x00000000 0x00000005	WRITE	muxctrl_reg24[0:0] (UART2_TXD pin mux control register.)
+							field muxctrl_reg24[0:0] (muxctrl_reg24) val = 0x0 (GPIO5_5)
+0x200F0068 0x00000001 0x00000000 0x00000005	WRITE	muxctrl_reg26[0:0] (USB0_OVRCUR pin mux control register.)
+							field muxctrl_reg26[0:0] (muxctrl_reg26) val = 0x1 (USB0_OVRCUR)
+0x200F006C 0x00000001 0x00000000 0x00000005	WRITE	muxctrl_reg27[0:0] (USB0_PWREN pin mux control register.)
+							field muxctrl_reg27[0:0] (muxctrl_reg27) val = 0x1 (USB0_PWREN)
+0x200F0070 0x00000001 0x00000000 0x00000005	WRITE	muxctrl_reg28[0:0] (USB1_OVRCUR pin mux control register.)
+							field muxctrl_reg28[0:0] (muxctrl_reg28) val = 0x1 (USB1_OVRCUR)
+0x200F0074 0x00000001 0x00000000 0x00000005	WRITE	muxctrl_reg29[0:0] (USB1_PWREN pin mux control register.)
+							field muxctrl_reg29[0:0] (muxctrl_reg29) val = 0x1 (USB1_PWREN)
+0x200F0078 0x00000001 0x00000000 0x00000005	WRITE	muxctrl_reg30[0:0] (HDMI_HOTPLUG pin multiplexing control register.)
+							field muxctrl_reg30[0:0] (muxctrl_reg30) val = 0x1 (HDMI_HOTPLUG)
+0x200F007C 0x00000001 0x00000000 0x00000005	WRITE	muxctrl_reg31[0:0] (HDMI_CEC pin mux control register.)
+							field muxctrl_reg31[0:0] (muxctrl_reg31) val = 0x1 (HDMI_CEC)
+0x200F0080 0x00000001 0x00000000 0x00000005	WRITE	muxctrl_reg32[0:0] (HDMI_SDA pin mux control register.)
+							field muxctrl_reg32[0:0] (muxctrl_reg32) val = 0x1 (HDMI_SDA)
+0x200F0084 0x00000001 0x00000000 0x00000005	WRITE	muxctrl_reg33[0:0] (HDMI_SCL pin mux control register.)
+							field muxctrl_reg33[0:0] (muxctrl_reg33) val = 0x1 (HDMI_SCL)
+0x200F0088 0x00000001 0x00000000 0x00000005	WRITE	muxctrl_reg34[0:0] (Multiplexing control register for SATA_LED_N0 pin.)
+							field muxctrl_reg34[0:0] (muxctrl_reg34) val = 0x1 (SATA_LED_N0)
+0x200F008C 0x00000001 0x00000000 0x00000005	WRITE	muxctrl_reg35[0:0] (Multiplexing control register for SATA_LED_N1 pin.)
+							field muxctrl_reg35[0:0] (muxctrl_reg35) val = 0x1 (SATA_LED_N1)
+0x200F0090 0x00000001 0x00000000 0x00000005	WRITE	muxctrl_reg36[0:0] (Multiplexing control register for ETH_LED1 pin.)
+							field muxctrl_reg36[0:0] (muxctrl_reg36) val = 0x1 (ETH_LED1)
+0x200F0094 0x00000001 0x00000000 0x00000005	WRITE	muxctrl_reg37[0:0] (ETH_LED0 pin multiplexing control register.)
+							field muxctrl_reg37[0:0] (muxctrl_reg37) val = 0x1 (ETH_LED0)
+0x200F00C0 0x00000001 0x00000000 0x00000005	WRITE	muxctrl_reg48[0:0] (GPIO1_2 pin mux control register.)
+							field muxctrl_reg48[0:0] (muxctrl_reg48) val = 0x1 (TEMPER_DQ)
+0x200F0098 0x00000001 0x00000000 0x00000005	WRITE	muxctrl_reg38[0:0] (GPIO0_0 pin mux control register.)
+							field muxctrl_reg38[0:0] (muxctrl_reg38) val = 0x1 (RMII_CLK)
+0x200F009C 0x00000001 0x00000000 0x00000005	WRITE	muxctrl_reg39[0:0] (UGPIO0_1 pin mux control register.)
+							field muxctrl_reg39[0:0] (muxctrl_reg39) val = 0x1 (RMII_TX_EN)
+0x200F00A0 0x00000001 0x00000000 0x00000005	WRITE	muxctrl_reg40[0:0] (GPIO0_2 pin mux control register.)
+							field muxctrl_reg40[0:0] (muxctrl_reg40) val = 0x1 (RMII_TXD0)
+0x200F00A4 0x00000001 0x00000000 0x00000005	WRITE	muxctrl_reg41[0:0] (GPIO0_3 pin mux control register.)
+							field muxctrl_reg41[0:0] (muxctrl_reg41) val = 0x1 (RMII_TXD1)
+0x200F00A8 0x00000001 0x00000000 0x00000005	WRITE	muxctrl_reg42[0:0] (GPIO0_4 pin mux control register.)
+							field muxctrl_reg42[0:0] (muxctrl_reg42) val = 0x1 (RMII_CRS_DV)
+0x200F00AC 0x00000001 0x00000000 0x00000005	WRITE	muxctrl_reg43[0:0] (GPIO0_5 pin mux control register.)
+							field muxctrl_reg43[0:0] (muxctrl_reg43) val = 0x1 (RMII_RXD0)
+0x200F00B0 0x00000001 0x00000000 0x00000005	WRITE	muxctrl_reg44[0:0] (GPIO0_6 pin mux control register.)
+							field muxctrl_reg44[0:0] (muxctrl_reg44) val = 0x1 (RMII_RXD1)
+0x200F00B4 0x00000001 0x00000000 0x00000005	WRITE	muxctrl_reg45[0:0] (GPIO0_7 pin mux control register.)
+							field muxctrl_reg45[0:0] (muxctrl_reg45) val = 0x1 (RMII_RX_ER)
+0x200F00C4 0x00000001 0x00000000 0x00000005	WRITE	muxctrl_reg49[0:0] (GPIO1_3 pin mux control register.)
+							field muxctrl_reg49[0:0] (muxctrl_reg49) val = 0x1 (MDCK)
+0x200F00C8 0x00000001 0x00000000 0x00000005	WRITE	muxctrl_reg50[0:0] (GPIO1_4 pin mux control register.)
+							field muxctrl_reg50[0:0] (muxctrl_reg50) val = 0x1 (AVERAGE)
+0x20050094 0x00000001 0x00000000 0x00004005	WRITE	PERIPHCTRL24[0:0] (Peripheral control register 24)
+							fields not found
+0x200500A4 0x62727727 0x00000000 0x000000FD	WRITE	PERIPHCTRL28[0:31] (Peripheral control register 28)
+							field vi_adc_clk_ioctrl_ds[0:2] (aio_mclk_ioctrl_ds) val = 0x7 (mA11)
+							field vga_hs_vs_ioctrl_ds[4:6] (vga_hs_vs_ioctrl_ds) val = 0x2 (mA8)
+							field aio_mclk_ioctrl_ds[8:10] (aio_mclk_ioctrl_ds) val = 0x7 (mA11)
+							field aio_bclk_rx_ioctrl_ds[12:14] (aio_bclk_rx_ioctrl_ds) val = 0x7 (mA11)
+							field aio_ws_rx_ioctrl_ds[16:18] (aio_ws_rx_ioctrl_ds) val = 0x2 (mA4)
+							field aio_bclk_tx_ioctrl_ds[20:22] (aio_bclk_tx_ioctrl_ds) val = 0x7 (mA11)
+							field aio_ws_tx_ioctrl_ds[24:26] (aio_ws_tx_ioctrl_ds) val = 0x2 (mA4)
+							field spi_sclk_ioctrl_ds[28:30] (spi_sclk_ioctrl_ds) val = 0x6 (mA8)
+0x200500A8 0x00000022 0x00000000 0x000000FD	WRITE	PERIPHCTRL29[0:31] (Peripheral control register 29)
+							field spi_sdo_ioctrl_ds[0:2] (spi_sdo_ioctrl_ds) val = 0x2 (mA4)
+							field sfc_ioctrl_ds[4:6] (sfc_ioctrl_ds) val = 0x2 (mA4)
+NULL reg found, aborting.
+Total  132 lines processed.

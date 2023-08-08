@@ -8,6 +8,8 @@ generate: systemrdl
 	go fmt ./hi3516av200.go
 	./rdl_to_go.py ./registers-description/hi3516av200.rdl hi3519v101 > ./hi3519v101.go
 	go fmt ./hi3519v101.go
+	./rdl_to_go.py ./registers-description/hi3520dv200.rdl hi3520dv200 > ./hi3520dv200.go
+	go fmt ./hi3520dv200.go
 
 build: generate
 	go build
